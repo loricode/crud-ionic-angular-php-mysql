@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="tertiary">
+    <ion-title>
+      Alumnos 
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+<ion-item>
+  <ion-label position="floating" style="font-size:22px">nombre</ion-label>
+  <ion-input type="text" [(ngModel)]="objeto.nombre" name="nombre" ></ion-input>
+</ion-item>
+
+<ion-item>
+<ion-label position="floating" style="font-size:22px">telefono</ion-label>
+<ion-input type="text" [(ngModel)]="objeto.telefono" name="telefono"></ion-input>
+</ion-item>
+
+  <ion-button style="font-size:20px" expand="block" size="small" shape="round"
+              fill="outline" color="success" (click)="agregar()">
+       {{bandera? 'Agregar':'Editar'}}
+  </ion-button>
+
+<ion-list>
+  <ion-item-sliding *ngFor="let alumno of alumnos">
+    <ion-card>
+      <ion-card-header>
+          <ion-card-subtitle>{{alumno.id}}</ion-card-subtitle>
+          <ion-card-title>{{alumno.nombre}} {{alumno.telefono}}</ion-card-title>
+      </ion-card-header>
+      
+    <ion-card-content> 
+      <ion-grid>
+        <ion-row>
+          <ion-col>        
+            <ion-button fill="outline" color="danger"(click)="borrar(alumno.id)">
+                     Borrar
+              </ion-button>     
+            </ion-col>
+          <ion-col>
+             <ion-button fill="outline" color="primary" 
+             (click)="editar(alumno.id, alumno.nombre, alumno.telefono)"
+             >
+                  Editar
+           </ion-button> 
+           </ion-col>
+        </ion-row>  
+      </ion-grid>      
+    </ion-card-content>
+  </ion-card>
+ </ion-item-sliding>
+</ion-list>
+
+  <app-explore-container name="Tab 2 page"></app-explore-container>
+ 
+</ion-content>
